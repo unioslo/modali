@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modali component Matches the snapshot 1`] = `
+Array [
+  <div
+    className="modali-overlay"
+  />,
+  <div
+    aria-hidden={true}
+    aria-modal={true}
+    className="modali-wrapper"
+    onClick={[Function]}
+    role="dialog"
+    tabIndex={-1}
+  >
+    <div
+      className="modali modali-size-regular"
+    >
+      <div
+        className="modali-content"
+      >
+        <div
+          className="modali-header"
+        >
+          <button
+            aria-label="Close"
+            className="modali-close-button"
+            data-dismiss="modal"
+            onClick={[Function]}
+            type="button"
+          >
+            <span
+              aria-hidden="true"
+            >
+              ×
+            </span>
+          </button>
+        </div>
+        <div
+          className="modali-body"
+        >
+          Hi, I'm a Modali!
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;
