@@ -1,12 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react';
-import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
+import { useState, useEffect, useRef } from 'react';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './modali.css';
 
+import { IButtonProps, IModalProps, IModalOptions, IModalHook, toggleModaliComponent } from './types';
+
+
+/**
+ * The `<Modali.Button />` component provides a ready-to-go button component
+ * that includes three separate styles of button: default, cancel, and destructive.
+ */
 const Button = ({
   onClick, label, isStyleDefault, isStyleCancel, isStyleDestructive,
-}) => {
+}: IButtonProps) => {
   const buttonClass = classNames({
     'modali-button': true,
     'modali-button-cancel': isStyleCancel,
@@ -38,10 +46,16 @@ Button.propTypes = {
   isStyleDestructive: PropTypes.bool,
 };
 
+/**
+ * The `<Modali.Modal />` component provides a beautiful, WAI-ARIA accessible
+ * modal dialog out of the box. Import it, add it to your component tree, pass
+ * in the props object that you get from the useModali hook and you're all set.
+ */
 const Modal = ({
   isModalVisible, hide, options, children,
-}) => {
-  function handleOverlayClicked(e) {
+}: IModalProps) => {
+  function handleOverlayClicked(e: React.MouseEvent<HTMLElement>) {
+    // @ts-ignore
     if (e.target.className !== 'modali-wrapper') {
       return;
     }
@@ -71,7 +85,7 @@ const Modal = ({
   }
 
   function renderFooter() {
-    const { buttons } = options;
+    const { buttons = [] } = options;
 
     return (
       <div className="modali-footer">
@@ -155,13 +169,13 @@ Modali.Button = Button;
 Modali.Modal = Modal;
 export default Modali;
 
-export const useModali = (options = {}) => {
+export const useModali = (options: IModalOptions = {}): [IModalHook, toggleModaliComponent] => {
   const [hasToggledBefore, setHasToggledBefore] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isShown, setIsShown] = useState(false);
   const isModalVisibleRef = useRef(isModalVisible);
   isModalVisibleRef.current = isModalVisible;
-  let timeoutHack;
+  let timeoutHack: number | undefined;
 
   function toggle() {
     timeoutHack = setTimeout(() => {
@@ -172,7 +186,7 @@ export const useModali = (options = {}) => {
     setHasToggledBefore(true);
   }
 
-  function handleKeyDown(event) {
+  const handleKeyDown = (event: KeyboardEvent) => {
     if (event.keyCode !== 27 || (options.keyboardClose === false)) return;
     toggle();
     if (options.onEscapeKeyDown) {

@@ -26,10 +26,15 @@
     "react-dom": ">=16.8"
   },
   "devDependencies": {
-    "@babel/cli": "^7.6.4",
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-react": "^7.6.3",
+    "@types/classnames": "^2.2.9",
+    "@types/jest": "^24.0.19",
+    "@types/prop-types": "^15.7.3",
+    "@types/react": "^16.9.6",
+    "@types/react-dom": "^16.9.2",
+    "@types/react-test-renderer": "^16.9.1",
     "@typescript-eslint/eslint-plugin": "^2.4.0",
     "@typescript-eslint/parser": "^2.4.0",
     "babel-loader": "^8.0.6",
@@ -45,6 +50,9 @@
     "react-syntax-highlighter": "^10.2.1",
     "react-test-renderer": "^16.10.2",
     "style-loader": "^0.23.1",
+    "ts-jest": "^24.1.0",
+    "ts-loader": "^6.2.0",
+    "typescript": "^3.6.4",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.1.14"
@@ -52,7 +60,7 @@
   "scripts": {
     "test": "jest",
     "start": "webpack-dev-server --mode development",
-    "transpile": "babel src -d dist --copy-files",
+    "transpile": "tsc",
     "prepublishOnly": "npm run transpile",
     "build": "webpack --mode production",
     "deploy": "gh-pages -d examples/dist",
@@ -61,10 +69,5 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "prop-types": "^15.7.2"
-  },
-  "jest": {
-    "moduleNameMapper": {
-      "\\.(css|less)$": "identity-obj-proxy"
-    }
   }
 }
