@@ -1,5 +1,7 @@
 # 🦞 modali
 
+[![Travis build status](https://travis-ci.org/mikaello/modali.svg?branch=master)](https://travis-ci.org/mikaello/modali)
+
 A delightful modal dialog library for React, built from the ground up to support
 React Hooks. Modali provides a simple interface to build beautiful modals in
 minutes.
