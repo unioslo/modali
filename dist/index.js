@@ -29,10 +29,10 @@ require("./modali.css");
 var Button = function (_a) {
     var onClick = _a.onClick, label = _a.label, isStyleDefault = _a.isStyleDefault, isStyleCancel = _a.isStyleCancel, isStyleDestructive = _a.isStyleDestructive;
     var buttonClass = classnames_1.default({
-        'modali-button': true,
-        'modali-button-cancel': isStyleCancel,
-        'modali-button-default': isStyleDefault,
-        'modali-button-destructive': isStyleDestructive,
+        "modali-button": true,
+        "modali-button-cancel": isStyleCancel,
+        "modali-button-default": isStyleDefault,
+        "modali-button-destructive": isStyleDestructive,
     });
     return (React.createElement("button", { type: "button", className: buttonClass, onClick: onClick }, label));
 };
@@ -57,7 +57,7 @@ var Modal = function (_a) {
     var isModalVisible = _a.isModalVisible, hide = _a.hide, options = _a.options, children = _a.children;
     function handleOverlayClicked(e) {
         // @ts-ignore
-        if (e.target.className !== 'modali-wrapper') {
+        if (e.target.className !== "modali-wrapper") {
             return;
         }
         if (options === undefined) {
@@ -77,7 +77,7 @@ var Modal = function (_a) {
             return children;
         }
         if (options && options.message) {
-            return (React.createElement("div", { className: "modali-body-style" }, options.message));
+            return React.createElement("div", { className: "modali-body-style" }, options.message);
         }
         return false;
     }
@@ -86,26 +86,30 @@ var Modal = function (_a) {
         return (React.createElement("div", { className: "modali-footer" }, buttons.map(function (button) { return (React.createElement(React.Fragment, { key: button.key }, button.content)); })));
     }
     var modaliWrapperClass = classnames_1.default({
-        'modali-wrapper': true,
-        'modali-wrapper-centered': options.centered,
+        "modali-wrapper": true,
+        "modali-wrapper-centered": options.centered,
     });
     var modaliClass = classnames_1.default({
         modali: true,
-        'modali-size-large': options.large,
-        'modali-size-regular': !options.large,
-        'modali-animated modali-animation-fade-in': options.animated,
+        "modali-size-large": options.large,
+        "modali-size-regular": !options.large,
+        "modali-animated modali-animation-fade-in": options.animated,
     });
-    return isModalVisible ? ReactDOM.createPortal(React.createElement(React.Fragment, null,
-        React.createElement("div", { className: "modali-overlay" }),
-        React.createElement("div", { className: modaliWrapperClass, "aria-modal": true, "aria-hidden": true, tabIndex: -1, role: "dialog", onClick: handleOverlayClicked },
-            React.createElement("div", { className: modaliClass },
-                React.createElement("div", { className: "modali-content" },
-                    options.closeButton === false ? null : (React.createElement("div", { className: "modali-header" },
-                        options.title !== undefined && (React.createElement("div", { className: "modali-title" }, options.title)),
-                        React.createElement("button", { type: "button", className: "modali-close-button", "data-dismiss": "modal", "aria-label": "Close", onClick: hide },
-                            React.createElement("span", { "aria-hidden": "true" }, "\u00D7")))),
-                    React.createElement("div", { className: "modali-body" }, renderBody()),
-                    options.buttons && options.buttons.length > 0 && renderFooter())))), document.body) : null;
+    return isModalVisible
+        ? ReactDOM.createPortal(React.createElement(React.Fragment, null,
+            React.createElement("div", { className: "modali-overlay" }),
+            React.createElement("div", { className: modaliWrapperClass, "aria-modal": true, "aria-hidden": true, tabIndex: -1, role: "dialog", onClick: handleOverlayClicked },
+                React.createElement("div", { className: modaliClass },
+                    React.createElement("div", { className: "modali-content" },
+                        options.closeButton === false ? null : (React.createElement("div", { className: "modali-header" },
+                            options.title !== undefined && (React.createElement("div", { className: "modali-title" }, options.title)),
+                            React.createElement("button", { type: "button", className: "modali-close-button", "data-dismiss": "modal", "aria-label": "Close", onClick: hide },
+                                React.createElement("span", { "aria-hidden": "true" }, "\u00D7")))),
+                        React.createElement("div", { className: "modali-body" }, renderBody()),
+                        options.buttons &&
+                            options.buttons.length > 0 &&
+                            renderFooter())))), document.body)
+        : null;
 };
 Modal.propTypes = {
     isModalVisible: PropTypes.bool.isRequired,
@@ -150,7 +154,7 @@ exports.useModali = function (options) {
         setHasToggledBefore(true);
     }
     var handleKeyDown = function (event) {
-        if (event.keyCode !== 27 || (options.keyboardClose === false))
+        if (event.keyCode !== 27 || options.keyboardClose === false)
             return;
         toggle();
         if (options.onEscapeKeyDown) {
@@ -162,16 +166,16 @@ exports.useModali = function (options) {
             if (options.onShow) {
                 options.onShow();
             }
-            document.addEventListener('keydown', handleKeyDown);
-            document.body.classList.add('modali-open');
+            document.addEventListener("keydown", handleKeyDown);
+            document.body.classList.add("modali-open");
         }
         if (!isShown && hasToggledBefore) {
             if (options.onHide) {
                 options.onHide();
             }
-            document.body.classList.remove('modali-open');
+            document.body.classList.remove("modali-open");
         }
-        return function () { return document.removeEventListener('keydown', handleKeyDown); };
+        return function () { return document.removeEventListener("keydown", handleKeyDown); };
     }, [isShown]);
     return [
         {
