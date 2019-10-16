@@ -69,7 +69,7 @@ export interface IModalOptions {
   /**
    * Displays whatever is passed in in the footer
    */
-  buttons?: { key: string, content: any }[];
+  buttons?: { key: string; content: any }[];
 
   /**
    * Controls the visibility of the close button

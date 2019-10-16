@@ -1,32 +1,37 @@
-import { useState, useEffect, useRef } from 'react';
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import * as PropTypes from 'prop-types';
-import classNames from 'classnames';
-import './modali.css';
+import { useState, useEffect, useRef } from "react";
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import * as PropTypes from "prop-types";
+import classNames from "classnames";
+import "./modali.css";
 
-import { IButtonProps, IModalProps, IModalOptions, IModalHook, toggleModaliComponent } from './types';
-
+import {
+  IButtonProps,
+  IModalProps,
+  IModalOptions,
+  IModalHook,
+  toggleModaliComponent,
+} from "./types";
 
 /**
  * The `<Modali.Button />` component provides a ready-to-go button component
  * that includes three separate styles of button: default, cancel, and destructive.
  */
 const Button = ({
-  onClick, label, isStyleDefault, isStyleCancel, isStyleDestructive,
+  onClick,
+  label,
+  isStyleDefault,
+  isStyleCancel,
+  isStyleDestructive,
 }: IButtonProps) => {
   const buttonClass = classNames({
-    'modali-button': true,
-    'modali-button-cancel': isStyleCancel,
-    'modali-button-default': isStyleDefault,
-    'modali-button-destructive': isStyleDestructive,
+    "modali-button": true,
+    "modali-button-cancel": isStyleCancel,
+    "modali-button-default": isStyleDefault,
+    "modali-button-destructive": isStyleDestructive,
   });
   return (
-    <button
-      type="button"
-      className={buttonClass}
-      onClick={onClick}
-    >
+    <button type="button" className={buttonClass} onClick={onClick}>
       {label}
     </button>
   );
@@ -51,12 +56,10 @@ Button.propTypes = {
  * modal dialog out of the box. Import it, add it to your component tree, pass
  * in the props object that you get from the useModali hook and you're all set.
  */
-const Modal = ({
-  isModalVisible, hide, options, children,
-}: IModalProps) => {
+const Modal = ({ isModalVisible, hide, options, children }: IModalProps) => {
   function handleOverlayClicked(e: React.MouseEvent<HTMLElement>) {
     // @ts-ignore
-    if (e.target.className !== 'modali-wrapper') {
+    if (e.target.className !== "modali-wrapper") {
       return;
     }
     if (options === undefined) {
@@ -74,12 +77,9 @@ const Modal = ({
   function renderBody() {
     if (children) {
       return children;
-    } if (options && options.message) {
-      return (
-        <div className="modali-body-style">
-          {options.message}
-        </div>
-      );
+    }
+    if (options && options.message) {
+      return <div className="modali-body-style">{options.message}</div>;
     }
     return false;
   }
@@ -90,55 +90,65 @@ const Modal = ({
     return (
       <div className="modali-footer">
         {buttons.map(button => (
-          <React.Fragment
-            key={button.key}
-          >
-            {button.content}
-          </React.Fragment>
+          <React.Fragment key={button.key}>{button.content}</React.Fragment>
         ))}
       </div>
     );
   }
 
   const modaliWrapperClass = classNames({
-    'modali-wrapper': true,
-    'modali-wrapper-centered': options.centered,
+    "modali-wrapper": true,
+    "modali-wrapper-centered": options.centered,
   });
 
   const modaliClass = classNames({
     modali: true,
-    'modali-size-large': options.large,
-    'modali-size-regular': !options.large,
-    'modali-animated modali-animation-fade-in': options.animated,
+    "modali-size-large": options.large,
+    "modali-size-regular": !options.large,
+    "modali-animated modali-animation-fade-in": options.animated,
   });
 
-  return isModalVisible ? ReactDOM.createPortal(
-    <React.Fragment>
-      <div className="modali-overlay" />
-      <div className={modaliWrapperClass} aria-modal aria-hidden tabIndex={-1} role="dialog" onClick={handleOverlayClicked}>
-        <div className={modaliClass}>
-          <div className="modali-content">
-            {options.closeButton === false ? null : (
-              <div className="modali-header">
-                {options.title !== undefined && (
-                  <div className="modali-title">
-                    {options.title}
+  return isModalVisible
+    ? ReactDOM.createPortal(
+        <React.Fragment>
+          <div className="modali-overlay" />
+          <div
+            className={modaliWrapperClass}
+            aria-modal
+            aria-hidden
+            tabIndex={-1}
+            role="dialog"
+            onClick={handleOverlayClicked}
+          >
+            <div className={modaliClass}>
+              <div className="modali-content">
+                {options.closeButton === false ? null : (
+                  <div className="modali-header">
+                    {options.title !== undefined && (
+                      <div className="modali-title">{options.title}</div>
+                    )}
+                    <button
+                      type="button"
+                      className="modali-close-button"
+                      data-dismiss="modal"
+                      aria-label="Close"
+                      onClick={hide}
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
                   </div>
                 )}
-                <button type="button" className="modali-close-button" data-dismiss="modal" aria-label="Close" onClick={hide}>
-                  <span aria-hidden="true">&times;</span>
-                </button>
+                <div className="modali-body">{renderBody()}</div>
+                {options.buttons &&
+                  options.buttons.length > 0 &&
+                  renderFooter()}
               </div>
-            )}
-            <div className="modali-body">
-              {renderBody()}
             </div>
-            {options.buttons && options.buttons.length > 0 && renderFooter()}
           </div>
-        </div>
-      </div>
-    </React.Fragment>, document.body,
-  ) : null;
+        </React.Fragment>,
+        document.body,
+      )
+    : null;
 };
 
 Modal.propTypes = {
@@ -151,10 +161,12 @@ Modal.propTypes = {
     onOverlayClick: PropTypes.func,
     title: PropTypes.string,
     message: PropTypes.string,
-    buttons: PropTypes.arrayOf(PropTypes.exact({
-      key: PropTypes.string,
-      content: PropTypes.any,
-    })),
+    buttons: PropTypes.arrayOf(
+      PropTypes.exact({
+        key: PropTypes.string,
+        content: PropTypes.any,
+      }),
+    ),
     closeButton: PropTypes.bool,
     animated: PropTypes.bool,
     centered: PropTypes.bool,
@@ -169,7 +181,9 @@ Modali.Button = Button;
 Modali.Modal = Modal;
 export default Modali;
 
-export const useModali = (options: IModalOptions = {}): [IModalHook, toggleModaliComponent] => {
+export const useModali = (
+  options: IModalOptions = {},
+): [IModalHook, toggleModaliComponent] => {
   const [hasToggledBefore, setHasToggledBefore] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isShown, setIsShown] = useState(false);
@@ -187,28 +201,28 @@ export const useModali = (options: IModalOptions = {}): [IModalHook, toggleModal
   }
 
   const handleKeyDown = (event: KeyboardEvent) => {
-    if (event.keyCode !== 27 || (options.keyboardClose === false)) return;
+    if (event.keyCode !== 27 || options.keyboardClose === false) return;
     toggle();
     if (options.onEscapeKeyDown) {
       options.onEscapeKeyDown();
     }
-  }
+  };
 
   useEffect(() => {
     if (isShown) {
       if (options.onShow) {
         options.onShow();
       }
-      document.addEventListener('keydown', handleKeyDown);
-      document.body.classList.add('modali-open');
+      document.addEventListener("keydown", handleKeyDown);
+      document.body.classList.add("modali-open");
     }
     if (!isShown && hasToggledBefore) {
       if (options.onHide) {
         options.onHide();
       }
-      document.body.classList.remove('modali-open');
+      document.body.classList.remove("modali-open");
     }
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
   }, [isShown]);
 
   return [
