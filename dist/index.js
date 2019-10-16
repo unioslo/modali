@@ -21,7 +21,6 @@ var React = require("react");
 var ReactDOM = require("react-dom");
 var PropTypes = require("prop-types");
 var classnames_1 = require("classnames");
-require("./modali.css");
 /**
  * The `<Modali.Button />` component provides a ready-to-go button component
  * that includes three separate styles of button: default, cancel, and destructive.

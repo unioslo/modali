@@ -3,7 +3,7 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import * as PropTypes from "prop-types";
 import classNames from "classnames";
-import "./modali.css";
+//import "./modali.css";
 
 import {
   IButtonProps,
