@@ -181,18 +181,20 @@ Modali.Button = Button;
 Modali.Modal = Modal;
 export default Modali;
 
-export const useModali = (
+export const useModali = <T extends {}>(
   options: IModalOptions = {},
-): [IModalHook, toggleModaliComponent] => {
+): [IModalHook<T>, toggleModaliComponent] => {
   const [hasToggledBefore, setHasToggledBefore] = useState(false);
+  const [payload, setPayload] = useState<T>();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isShown, setIsShown] = useState(false);
   const isModalVisibleRef = useRef(isModalVisible);
   isModalVisibleRef.current = isModalVisible;
   let timeoutHack: number | undefined;
 
-  function toggle() {
+  function toggle(payload?: T) {
     timeoutHack = setTimeout(() => {
+      payload !== undefined && setPayload(payload);
       setIsModalVisible(!isModalVisibleRef.current);
       clearTimeout(timeoutHack);
     }, 10);
@@ -227,6 +229,7 @@ export const useModali = (
 
   return [
     {
+      payload,
       isShown,
       isModalVisible,
       hide: toggle,

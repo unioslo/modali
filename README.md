@@ -126,6 +126,16 @@ This is demonstrated in the example above, from the following line: <br />
   component.
 - `toggleExampleModal` is the function to show/hide Modali.
 
+Props-object from `useModali` hook:
+
+| Prop             | Type         | Description                                                                         |
+| ---------------- | ------------ | ----------------------------------------------------------------------------------- |
+| `payload`        | `any`        | An optional payload that can be sent to toggle-function, and is passed forward here |
+| `isShown`        | `bool`       | Telling whether the boolean _is_ visible or not                                     |
+| `isModalVisible` | `bool`       | Controls whether to the modal _should_ be visible                                   |
+| `hide`           | `() => void` | Function to hide the modal                                                          |
+| `options`        | `object`     | Options for the modal                                                               |
+
 ### <Modali.Modal /> Component
 
 The `<Modali.Modal />` component provides a beautiful, WAI-ARIA accessible modal
@@ -244,12 +254,12 @@ when the modal shows and hides.
 
 ### Events
 
-| Event             | Description                                                                             |
-| ----------------- | --------------------------------------------------------------------------------------- |
-| `onShow`          | Called when the component finishes mounting to the DOM                                  |
-| `onHide`          | Called when the component is removed from the DOM                                       |
-| `onEscapeKeyDown` | Called when the escape key is pressed while the component is mounted to the DOM         |
-| `onOverlayClick`  | Called when the modal overlay back is clicked while the component is mounted to the DOM |
+| Event              | Description                                                                             |
+| ------------------ | --------------------------------------------------------------------------------------- |
+| `onShow`           | Called when the component finishes mounting to the DOM                                  |
+| `onHide`           | Called when the component is removed from the DOM                                       |
+| `onEscapeKeyDown`  | Called when the escape key is pressed while the component is mounted to the DOM         |
+| `onOverlayClicked` | Called when the modal overlay back is clicked while the component is mounted to the DOM |
 
 Example
 

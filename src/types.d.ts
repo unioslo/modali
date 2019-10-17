@@ -28,11 +28,17 @@ export type toggleModaliComponent = () => void;
 /**
  * An object containing props which must be passed into the Modali component.
  */
-export interface IModalHook extends IModal {
+export interface IModalHook<T> extends IModal {
   /**
    * Telling whether the modal is visible or not.
    */
   isShown: boolean;
+
+  /**
+   * An optional payload that can be sent to the modal toggle function and
+   * passed forward
+   */
+  payload?: T;
 }
 
 export interface IModalOptions {
