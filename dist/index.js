@@ -139,13 +139,15 @@ exports.default = Modali;
 exports.useModali = function (options) {
     if (options === void 0) { options = {}; }
     var _a = __read(react_1.useState(false), 2), hasToggledBefore = _a[0], setHasToggledBefore = _a[1];
-    var _b = __read(react_1.useState(false), 2), isModalVisible = _b[0], setIsModalVisible = _b[1];
-    var _c = __read(react_1.useState(false), 2), isShown = _c[0], setIsShown = _c[1];
+    var _b = __read(react_1.useState(), 2), payload = _b[0], setPayload = _b[1];
+    var _c = __read(react_1.useState(false), 2), isModalVisible = _c[0], setIsModalVisible = _c[1];
+    var _d = __read(react_1.useState(false), 2), isShown = _d[0], setIsShown = _d[1];
     var isModalVisibleRef = react_1.useRef(isModalVisible);
     isModalVisibleRef.current = isModalVisible;
     var timeoutHack;
-    function toggle() {
+    function toggle(payload) {
         timeoutHack = setTimeout(function () {
+            payload !== undefined && setPayload(payload);
             setIsModalVisible(!isModalVisibleRef.current);
             clearTimeout(timeoutHack);
         }, 10);
@@ -178,6 +180,7 @@ exports.useModali = function (options) {
     }, [isShown]);
     return [
         {
+            payload: payload,
             isShown: isShown,
             isModalVisible: isModalVisible,
             hide: toggle,
