@@ -146,7 +146,7 @@ const Modal = ({ isModalVisible, hide, options, children }: IModalProps) => {
             </div>
           </div>
         </React.Fragment>,
-        document.body,
+        options.mountElement || document.body,
       )
     : null;
 };

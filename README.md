@@ -275,17 +275,18 @@ the useModali Hook's initializer:
 
 ### Props
 
-| Option          | Default Value | Description                                                                                                            |
-| --------------- | ------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `title`         | string        | The text displayed in the upper left corner                                                                            |
-| `message`       | string        | The text displayed in the body of the modal                                                                            |
-| `buttons`       | array         | Displays whatever is passed in in the footer. Array elements must have the form `{ key: uniqueString, content: any }`. |
-| `closeButton`   | true          | Controls the visibility of the close button                                                                            |
-| `animated`      | false         | Fades in the modal when it mounts to the DOM                                                                           |
-| `centered`      | false         | Positions the modal in the center of the screen                                                                        |
-| `large`         | false         | Changes the size of the modal to be 800px wide                                                                         |
-| `overlayClose`  | true          | Disables clicking the modal overlay to hide it                                                                         |
-| `keyboardClose` | true          | Disables the ESC key hiding the modal                                                                                  |
+| Option          | Default Value   | Description                                                                                                            |
+| --------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `title`         | string          | The text displayed in the upper left corner                                                                            |
+| `message`       | string          | The text displayed in the body of the modal                                                                            |
+| `buttons`       | array           | Displays whatever is passed in in the footer. Array elements must have the form `{ key: uniqueString, content: any }`. |
+| `closeButton`   | true            | Controls the visibility of the close button                                                                            |
+| `animated`      | false           | Fades in the modal when it mounts to the DOM                                                                           |
+| `centered`      | false           | Positions the modal in the center of the screen                                                                        |
+| `large`         | false           | Changes the size of the modal to be 800px wide                                                                         |
+| `overlayClose`  | true            | Disables clicking the modal overlay to hide it                                                                         |
+| `keyboardClose` | true            | Disables the ESC key hiding the modal                                                                                  |
+| `mountElement`  | `document.body` | The element that the modal is loaded into                                                                              |
 
 Example
 

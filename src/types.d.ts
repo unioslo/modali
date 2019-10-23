@@ -17,6 +17,9 @@ interface IModal {
 }
 
 export interface IModalProps extends IModal {
+  /**
+   * React components to be shown in the body of the modal
+   */
   children?: React.ReactNode;
 }
 
@@ -106,6 +109,13 @@ export interface IModalOptions {
    * Disables the ESC key hiding the modal
    */
   keyboardClose?: boolean;
+
+  /**
+   * The element that the modal should be loaded into. This will select
+   * `document.body` as default, but if you for example want the modal to load
+   * into an iframe you will want to provide the `body` for that iframe.
+   */
+  mountElement?: Element;
 }
 
 export interface IButtonProps {
