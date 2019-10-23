@@ -107,7 +107,7 @@ var Modal = function (_a) {
                         React.createElement("div", { className: "modali-body" }, renderBody()),
                         options.buttons &&
                             options.buttons.length > 0 &&
-                            renderFooter())))), document.body)
+                            renderFooter())))), options.mountElement || document.body)
         : null;
 };
 Modal.propTypes = {
