@@ -99,7 +99,7 @@ var Modal = function (_a) {
         ? ReactDOM.createPortal(React.createElement(React.Fragment, null,
             React.createElement("div", { className: "modali-overlay" }),
             React.createElement("div", { className: modaliWrapperClass, "aria-modal": true, "aria-hidden": true, tabIndex: -1, role: "dialog", onClick: handleOverlayClicked },
-                React.createElement("div", { className: modaliClass },
+                React.createElement("div", { className: modaliClass, style: { top: options.offsetTop } },
                     React.createElement("div", { className: "modali-content" },
                         options.closeButton === false ? null : (React.createElement("div", { className: "modali-header" },
                             options.title !== undefined && (React.createElement("div", { className: "modali-title" }, options.title)),

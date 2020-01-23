@@ -117,6 +117,11 @@ export interface IModalOptions {
    * into an iframe you will want to provide the `body` for that iframe.
    */
   mountElement?: Element;
+
+  /**
+   * Offset from top of `mountElement`
+   */
+  offsetTop?: number;
 }
 
 export interface IButtonProps {

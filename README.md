@@ -287,6 +287,7 @@ the useModali Hook's initializer:
 | `overlayClose`  | true            | Disables clicking the modal overlay to hide it                                                                         |
 | `keyboardClose` | true            | Disables the ESC key hiding the modal                                                                                  |
 | `mountElement`  | `document.body` | The element that the modal is loaded into                                                                              |
+| `offsetTop`     | 0               | Offset from top of `mountElement`                                                                                      |
 
 Example
 
