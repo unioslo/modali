@@ -16,6 +16,7 @@ var __read = (this && this.__read) || function (o, n) {
     return ar;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
 var react_1 = require("react");
 var React = require("react");
 var ReactDOM = require("react-dom");
@@ -78,7 +79,7 @@ var Modal = function (_a) {
         if (options && options.message) {
             return React.createElement("div", { className: "modali-body-style" }, options.message);
         }
-        return false;
+        return null;
     }
     function renderFooter() {
         var _a = options.buttons, buttons = _a === void 0 ? [] : _a;
@@ -117,7 +118,7 @@ Modal.propTypes = {
         onShow: PropTypes.func,
         onHide: PropTypes.func,
         onEscapeKeyDown: PropTypes.func,
-        onOverlayClick: PropTypes.func,
+        onOverlayClicked: PropTypes.func,
         title: PropTypes.string,
         message: PropTypes.string,
         buttons: PropTypes.arrayOf(PropTypes.exact({
@@ -130,6 +131,8 @@ Modal.propTypes = {
         large: PropTypes.bool,
         overlayClose: PropTypes.bool,
         keyboardClose: PropTypes.bool,
+        mountElement: PropTypes.object,
+        offsetTop: PropTypes.number,
     }).isRequired,
 };
 var Modali = function () { };
