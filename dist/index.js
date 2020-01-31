@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __read = (this && this.__read) || function (o, n) {
     var m = typeof Symbol === "function" && o[Symbol.iterator];
     if (!m) return o;
@@ -139,18 +150,25 @@ var Modali = function () { };
 Modali.Button = Button;
 Modali.Modal = Modal;
 exports.default = Modali;
-exports.useModali = function (options) {
-    if (options === void 0) { options = {}; }
+exports.useModali = function (modalOptions) {
+    if (modalOptions === void 0) { modalOptions = {}; }
     var _a = __read(react_1.useState(false), 2), hasToggledBefore = _a[0], setHasToggledBefore = _a[1];
     var _b = __read(react_1.useState(), 2), payload = _b[0], setPayload = _b[1];
     var _c = __read(react_1.useState(false), 2), isModalVisible = _c[0], setIsModalVisible = _c[1];
     var _d = __read(react_1.useState(false), 2), isShown = _d[0], setIsShown = _d[1];
+    var _e = __read(react_1.useState(modalOptions), 2), options = _e[0], setOptions = _e[1];
     var isModalVisibleRef = react_1.useRef(isModalVisible);
     isModalVisibleRef.current = isModalVisible;
     var timeoutHack;
-    function toggle(payload) {
+    function toggle(_a) {
+        var _b = _a === void 0 ? {} : _a, payload = _b.payload, updatedOptions = _b.options;
         timeoutHack = setTimeout(function () {
-            payload !== undefined && setPayload(payload);
+            if (updatedOptions !== undefined) {
+                setOptions(__assign(__assign({}, options), updatedOptions));
+            }
+            if (payload !== undefined) {
+                setPayload(payload);
+            }
             setIsModalVisible(!isModalVisibleRef.current);
             clearTimeout(timeoutHack);
         }, 10);

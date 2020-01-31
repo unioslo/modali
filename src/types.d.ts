@@ -25,11 +25,6 @@ export interface IModalProps extends IModal {
 }
 
 /**
- * Function to toggle visibility of the modali component
- */
-export type toggleModaliComponent = () => void;
-
-/**
  * An object containing props which must be passed into the Modali component.
  */
 export interface IModalHook<T> extends IModal {
@@ -150,3 +145,11 @@ export interface IButtonProps {
    */
   onClick: () => void;
 }
+
+/**
+ * Function to toggle visibility of the modali component
+ */
+export type toggleModaliComponent<T> = (toggleOptions?: {
+  payload?: T;
+  options?: IModalOptions;
+}) => void;
