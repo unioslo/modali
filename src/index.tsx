@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-ignore */
 import { useState, useEffect, useRef } from "react";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
@@ -23,7 +24,7 @@ const Button = ({
   isStyleDefault,
   isStyleCancel,
   isStyleDestructive,
-}: IButtonProps) => {
+}: IButtonProps): React.ReactNode => {
   const buttonClass = classNames({
     "modali-button": true,
     "modali-button-cancel": isStyleCancel,
@@ -56,8 +57,13 @@ Button.propTypes = {
  * modal dialog out of the box. Import it, add it to your component tree, pass
  * in the props object that you get from the useModali hook and you're all set.
  */
-const Modal = ({ isModalVisible, hide, options, children }: IModalProps) => {
-  function handleOverlayClicked(e: React.MouseEvent<HTMLElement>) {
+const Modal = ({
+  isModalVisible,
+  hide,
+  options,
+  children,
+}: IModalProps): React.ReactNode => {
+  function handleOverlayClicked(e: React.MouseEvent<HTMLElement>): void {
     // @ts-ignore
     if (e.target.className !== "modali-wrapper") {
       return;
@@ -74,17 +80,17 @@ const Modal = ({ isModalVisible, hide, options, children }: IModalProps) => {
     }
   }
 
-  function renderBody() {
+  function renderBody(): React.ReactNode {
     if (children) {
       return children;
     }
     if (options && options.message) {
       return <div className="modali-body-style">{options.message}</div>;
     }
-    return false;
+    return null;
   }
 
-  function renderFooter() {
+  function renderFooter(): React.ReactNode {
     const { buttons = [] } = options;
 
     return (
@@ -176,7 +182,7 @@ Modal.propTypes = {
   }).isRequired,
 };
 
-const Modali = () => {};
+const Modali = (): void => {};
 Modali.Button = Button;
 Modali.Modal = Modal;
 export default Modali;
@@ -192,7 +198,7 @@ export const useModali = <T extends {}>(
   isModalVisibleRef.current = isModalVisible;
   let timeoutHack: number | undefined;
 
-  function toggle(payload?: T) {
+  function toggle(payload?: T): void {
     timeoutHack = setTimeout(() => {
       payload !== undefined && setPayload(payload);
       setIsModalVisible(!isModalVisibleRef.current);
@@ -202,7 +208,7 @@ export const useModali = <T extends {}>(
     setHasToggledBefore(true);
   }
 
-  const handleKeyDown = (event: KeyboardEvent) => {
+  const handleKeyDown = (event: KeyboardEvent): void => {
     if (event.keyCode !== 27 || options.keyboardClose === false) return;
     toggle();
     if (options.onEscapeKeyDown) {
@@ -224,7 +230,7 @@ export const useModali = <T extends {}>(
       }
       document.body.classList.remove("modali-open");
     }
-    return () => document.removeEventListener("keydown", handleKeyDown);
+    return (): void => document.removeEventListener("keydown", handleKeyDown);
   }, [isShown]);
 
   return [
