@@ -9,10 +9,11 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "preserveConstEnums": true,
+    "removeComments": false,
     "declaration": true,
     "sourceMap": false,
     "outDir": "dist",
-    "jsx": "react",
+    "jsx": "react"
   },
   "include": ["src/**/*"]
 }

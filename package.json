@@ -65,7 +65,7 @@
     "test": "jest",
     "start": "webpack-dev-server --mode development",
     "transpile": "tsc",
-    "prepublishOnly": "npm run transpile && cp src/types.d.ts dist/",
+    "prepublishOnly": "npm run transpile",
     "build": "webpack --mode production",
     "deploy": "gh-pages -d examples/dist",
     "publish-demo": "npm run build && npm run deploy"
