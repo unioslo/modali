@@ -7,6 +7,8 @@ import classNames from "classnames";
 //import "./modali.css";
 
 import {
+  Button as ButtonType,
+  Modal as ModalType,
   IButtonProps,
   IModalProps,
   IModalOptions,
@@ -18,13 +20,13 @@ import {
  * The `<Modali.Button />` component provides a ready-to-go button component
  * that includes three separate styles of button: default, cancel, and destructive.
  */
-const Button = ({
+const Button: ButtonType = ({
   onClick,
   label,
   isStyleDefault,
   isStyleCancel,
   isStyleDestructive,
-}: IButtonProps): React.ReactNode => {
+}: IButtonProps): React.ReactElement => {
   const buttonClass = classNames({
     "modali-button": true,
     "modali-button-cancel": isStyleCancel,
@@ -57,12 +59,12 @@ Button.propTypes = {
  * modal dialog out of the box. Import it, add it to your component tree, pass
  * in the props object that you get from the useModali hook and you're all set.
  */
-const Modal = ({
+const Modal: ModalType = ({
   isModalVisible,
   hide,
   options,
   children,
-}: IModalProps): React.ReactNode => {
+}: IModalProps): React.ReactPortal | null => {
   function handleOverlayClicked(e: React.MouseEvent<HTMLElement>): void {
     // @ts-ignore
     if (e.target.className !== "modali-wrapper") {
