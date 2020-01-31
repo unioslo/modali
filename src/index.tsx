@@ -164,7 +164,7 @@ Modal.propTypes = {
     onShow: PropTypes.func,
     onHide: PropTypes.func,
     onEscapeKeyDown: PropTypes.func,
-    onOverlayClick: PropTypes.func,
+    onOverlayClicked: PropTypes.func,
     title: PropTypes.string,
     message: PropTypes.string,
     buttons: PropTypes.arrayOf(
@@ -179,6 +179,8 @@ Modal.propTypes = {
     large: PropTypes.bool,
     overlayClose: PropTypes.bool,
     keyboardClose: PropTypes.bool,
+    mountElement: PropTypes.object,
+    offsetTop: PropTypes.number,
   }).isRequired,
 };
 

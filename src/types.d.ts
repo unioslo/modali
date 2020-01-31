@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/interface-name-prefix */
 interface IModal {
   /**
    * Controls whether the modals is visible or not. Toggled by the toggle
