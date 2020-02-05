@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/interface-name-prefix */
-declare module "modali" {
+declare module "@vrtx/modali" {
   import * as React from "react";
 
   export interface IModal {
