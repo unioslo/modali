@@ -146,9 +146,10 @@ Modal.propTypes = {
         offsetTop: PropTypes.number,
     }).isRequired,
 };
-var Modali = function () { };
-Modali.Button = Button;
-Modali.Modal = Modal;
+var Modali = {
+    Button: Button,
+    Modal: Modal,
+};
 exports.default = Modali;
 exports.useModali = function (modalOptions) {
     if (modalOptions === void 0) { modalOptions = {}; }

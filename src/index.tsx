@@ -186,9 +186,10 @@ Modal.propTypes = {
   }).isRequired,
 };
 
-const Modali = (): void => {};
-Modali.Button = Button;
-Modali.Modal = Modal;
+const Modali: { Button: ButtonType; Modal: ModalType } = {
+  Button,
+  Modal,
+};
 export default Modali;
 
 export const useModali = <T extends {}>(
