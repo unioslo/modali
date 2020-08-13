@@ -231,20 +231,23 @@ export const useModali = <T extends Record<string, unknown>>(
   };
 
   useEffect(() => {
+    const currentDocument = options.mountElement?.ownerDocument ?? document;
     if (isShown) {
       if (options.onShow) {
         options.onShow();
       }
-      document.addEventListener("keydown", handleKeyDown);
-      document.body.classList.add("modali-open");
+      currentDocument.addEventListener("keydown", handleKeyDown, true);
+      currentDocument.body.classList.add("modali-open");
     }
     if (!isShown && hasToggledBefore) {
       if (options.onHide) {
         options.onHide();
       }
-      document.body.classList.remove("modali-open");
+      currentDocument.body.classList.remove("modali-open");
     }
-    return (): void => document.removeEventListener("keydown", handleKeyDown);
+    return () => {
+      currentDocument.removeEventListener("keydown", handleKeyDown, true);
+    };
   }, [isShown]);
 
   return [
