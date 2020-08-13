@@ -3,7 +3,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { okaidia } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { options } from "./snippets/snippets";
 
-import Modali, { useModali } from "../../src";
+import Modali, { useModali } from "../../dist";
 import Button from "./Button";
 
 const OptionsModalsExample = () => {

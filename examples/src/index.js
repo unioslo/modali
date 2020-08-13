@@ -3,7 +3,7 @@ import { render } from "react-dom";
 
 import Installation from "./Installation";
 import BasicExample from "./BasicExample";
-import Modali, { useModali } from "../../src";
+import Modali, { useModali } from "../../dist";
 import Button from "./Button";
 import MultipleModalsExample from "./MultipleModalsExample";
 import OptionsModalsExample from "./OptionsModalsExample";

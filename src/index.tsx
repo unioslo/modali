@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useState, useEffect, useRef } from "react";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
@@ -97,7 +97,7 @@ const Modal: ModalType = ({
 
     return (
       <div className="modali-footer">
-        {buttons.map(button => (
+        {buttons?.map((button) => (
           <React.Fragment key={button.key}>{button.content}</React.Fragment>
         ))}
       </div>
@@ -128,7 +128,7 @@ const Modal: ModalType = ({
             role="dialog"
             onClick={handleOverlayClicked}
           >
-            <div className={modaliClass} style={{ top: options.offsetTop }}>
+            <div className={modaliClass} style={{ top: options?.offsetTop ?? undefined }}>
               <div className="modali-content">
                 {options.closeButton === false ? null : (
                   <div className="modali-header">
@@ -171,9 +171,9 @@ Modal.propTypes = {
     message: PropTypes.string,
     buttons: PropTypes.arrayOf(
       PropTypes.exact({
-        key: PropTypes.string,
-        content: PropTypes.any,
-      }),
+        key: PropTypes.string.isRequired,
+        content: PropTypes.any.isRequired,
+      }).isRequired,
     ),
     closeButton: PropTypes.bool,
     animated: PropTypes.bool,
@@ -181,7 +181,7 @@ Modal.propTypes = {
     large: PropTypes.bool,
     overlayClose: PropTypes.bool,
     keyboardClose: PropTypes.bool,
-    mountElement: PropTypes.object,
+    mountElement: PropTypes.any,
     offsetTop: PropTypes.number,
   }).isRequired,
 };
@@ -192,7 +192,7 @@ const Modali: { Button: ButtonType; Modal: ModalType } = {
 };
 export default Modali;
 
-export const useModali = <T extends {}>(
+export const useModali = <T extends Record<string, unknown>>(
   modalOptions: IModalOptions = {},
 ): [IModalHook<T>, toggleModaliComponent<T>] => {
   const [hasToggledBefore, setHasToggledBefore] = useState(false);
@@ -202,7 +202,7 @@ export const useModali = <T extends {}>(
   const [options, setOptions] = useState<IModalOptions>(modalOptions);
   const isModalVisibleRef = useRef(isModalVisible);
   isModalVisibleRef.current = isModalVisible;
-  let timeoutHack: number | undefined;
+  let timeoutHack: NodeJS.Timeout;
 
   function toggle({
     payload,

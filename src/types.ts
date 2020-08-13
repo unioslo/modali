@@ -44,79 +44,79 @@ export interface IModalOptions {
   /**
    * Called when the component finishes mounting to the DOM
    */
-  onShow?: () => void;
+  onShow?: (() => void) | null;
 
   /**
    * Called when the component is removed from the DOM
    */
-  onHide?: () => void;
+  onHide?: (() => void) | null;
 
   /**
    * Called when the escape key is pressed while the component is mounted to the DOM
    */
-  onEscapeKeyDown?: () => void;
+  onEscapeKeyDown?: (() => void) | null;
 
   /**
    * Called when the modal overlay back is clicked while the component is mounted to the DOM
    */
-  onOverlayClicked?: () => void;
+  onOverlayClicked?: (() => void) | null;
 
   /**
    * The text displayed in the upper left corner
    */
-  title?: string;
+  title?: string | null;
 
   /**
    * The text displayed in the body of the modal
    */
-  message?: string;
+  message?: string | null;
 
   /**
    * Displays whatever is passed in in the footer
    */
-  buttons?: { key: string; content: any }[];
+  buttons?: { key: string; content: any }[] | null;
 
   /**
    * Controls the visibility of the close button
    */
-  closeButton?: boolean;
+  closeButton?: boolean | null;
 
   /**
    * Fades in the modal when it mounts to the DOM
    */
-  animated?: boolean;
+  animated?: boolean | null;
 
   /**
    * Positions the modal in the center of the screen
    */
-  centered?: boolean;
+  centered?: boolean | null;
 
   /**
    * Changes the size of the modal to be 800px wide
    */
-  large?: boolean;
+  large?: boolean | null;
 
   /**
    * Disables clicking the modal overlay to hide it
    */
-  overlayClose?: boolean;
+  overlayClose?: boolean | null;
 
   /**
    * Disables the ESC key hiding the modal
    */
-  keyboardClose?: boolean;
+  keyboardClose?: boolean | null;
 
   /**
    * The element that the modal should be loaded into. This will select
    * `document.body` as default, but if you for example want the modal to load
    * into an iframe you will want to provide the `body` for that iframe.
    */
-  mountElement?: Element;
+  mountElement?: Element | null;
 
   /**
    * Offset from top of `mountElement`
    */
-  offsetTop?: number;
+  offsetTop?: number | null;
 }
 
 export interface IButtonProps {
