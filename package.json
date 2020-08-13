@@ -7,10 +7,10 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mikaello/modali"
+    "url": "https://github.com/unioslo/modali"
   },
   "bugs": {
-    "url": "https://github.com/mikaello/modali/issues"
+    "url": "https://github.com/unioslo/modali/issues"
   },
   "author": {
     "name": "James King (Upmostly.com)",
