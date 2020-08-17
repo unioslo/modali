@@ -42,14 +42,19 @@ export interface IModalHook<T> extends IModal {
 
 export interface IModalOptions {
   /**
-   * Called when the component finishes mounting to the DOM
+   * Called before the component is shown
    */
   onShow?: (() => void) | null;
 
   /**
-   * Called when the component is removed from the DOM
+   * Called before the component is hidden
    */
   onHide?: (() => void) | null;
+
+  /**
+   * Called before the component is removed from the DOM
+   */
+  onUnmount?: (() => void) | null;
 
   /**
    * Called when the escape key is pressed while the component is mounted to the DOM

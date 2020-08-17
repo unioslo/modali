@@ -165,6 +165,7 @@ Modal.propTypes = {
   options: PropTypes.shape({
     onShow: PropTypes.func,
     onHide: PropTypes.func,
+    onUnmount: PropTypes.func,
     onEscapeKeyDown: PropTypes.func,
     onOverlayClicked: PropTypes.func,
     title: PropTypes.string,
@@ -208,6 +209,8 @@ export const useModali = <T extends Record<string, unknown>>(
     payload,
     options: updatedOptions,
   }: { payload?: T; options?: IModalOptions } = {}): void {
+    setIsShown(!isShown);
+    setHasToggledBefore(true);
     timeoutHack = setTimeout(() => {
       if (updatedOptions !== undefined) {
         setOptions({ ...options, ...updatedOptions });
@@ -218,8 +221,6 @@ export const useModali = <T extends Record<string, unknown>>(
       setIsModalVisible(!isModalVisibleRef.current);
       clearTimeout(timeoutHack);
     }, 10);
-    setIsShown(!isShown);
-    setHasToggledBefore(true);
   }
 
   const handleKeyDown = (event: KeyboardEvent): void => {
@@ -246,6 +247,10 @@ export const useModali = <T extends Record<string, unknown>>(
       currentDocument.body.classList.remove("modali-open");
     }
     return () => {
+      if (options.onUnmount) {
+        options.onUnmount();
+      }
+      currentDocument.body.classList.remove("modali-open");
       currentDocument.removeEventListener("keydown", handleKeyDown, true);
     };
   }, [isShown]);

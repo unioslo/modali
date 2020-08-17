@@ -43,14 +43,19 @@ declare module "@vrtx/modali" {
 
   export interface IModalOptions {
     /**
-     * Called when the component finishes mounting to the DOM
+     * Called before the component is shown
      */
-    onShow?: () => void;
+    onShow?: (() => void) | null;
 
     /**
-     * Called when the component is removed from the DOM
+     * Called before the component is hidden
      */
-    onHide?: () => void;
+    onHide?: (() => void) | null;
+
+    /**
+     * Called before the component is removed from the DOM
+     */
+    onUnmount?: (() => void) | null;
 
     /**
      * Called when the escape key is pressed while the component is mounted to the DOM
