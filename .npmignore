@@ -1,15 +1,19 @@
 # .npmignore
-src
-examples
+src/
+examples/
 .babelrc
 .gitignore
+.nvmrc
 webpack.config.js
 
 #tests
+__tests__/
+jest.config.js
 test
 coverage
 
 #build tools
+tsconfig.json
 .travis.yml
 .jenkins.yml
 .codeclimate.yml
@@ -18,6 +22,7 @@ coverage
 .jscsrc
 .jshintrc
 .eslintrc*
+.prettierrc.js
 
 #editor settings
 .idea

@@ -1,6 +1,6 @@
 {
   "name": "@vrtx/modali",
-  "version": "2.1.5",
+  "version": "2.2.1",
   "description": "A delightful modal dialog component for React, built from the ground up to support React Hooks.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -64,7 +64,6 @@
   "scripts": {
     "test": "jest",
     "start": "webpack-dev-server --mode development",
-    "prepublishOnly": "tsc && cp src/index.d.ts dist/",
     "build": "tsc && webpack --mode production",
     "deploy": "gh-pages -d examples/dist",
     "publish-demo": "npm run build && npm run deploy",
